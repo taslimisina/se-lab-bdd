@@ -1,17 +1,18 @@
 @tag
 Feature: Calculator
-  Scenario: add two numbers
-    Given Two input values, 1 and 2
-    When I add the two values
-    Then I expect the result 3
+  As a user, I want to do multiplication, division, and power operations between two numbers.
+  Scenario: multiply two numbers
+    Given Two input values, 2 and 3
+    When I do operation * between the two values
+    Then I expect the result to be 6
 
   Scenario Outline:
     Given Two input values, <first> and <second>
-    When I add the two values
-    Then I expect the result <result>
+    When I do operation <opt> between the two values
+    Then I expect the result to be <result>
     Examples:
-      | first | second | result |
-      | 1 | 12 | 13 |
-      | -1 | 6 | 5 |
-      | 2 | 2 | 4 |
+      | first | second | opt | result |
+      | 3 | 4 | * | 12 |
+      | -5 | 2 | / | -2.5 |
+      | 2 | 3 | ^  | 8 |
 
