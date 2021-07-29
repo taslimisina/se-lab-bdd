@@ -11,7 +11,7 @@ public class MyStepdefs {
     private Calculator calculator;
     private int value1;
     private int value2;
-    private int result;
+    private double result;
 
     @Before
     public void before() {
@@ -24,13 +24,13 @@ public class MyStepdefs {
         value2 = arg1;
     }
 
-    @When("^I do operation (\\*|\\|\\^) between the two values$")
-    public void iDoOperationBetweenTheTwoValues(String arg0) {
+    @When("^I do operation ([\\*/\\^]) between the two values$")
+    public void iDoOperationBetweenTheTwoValues(char arg0) {
         result = calculator.doOperation(value1, value2, arg0);
     }
 
-    @Then("^I expect the result to be (\\d+)$")
-    public void iExpectTheResultToBe(int arg0) {
-        Assert.assertEquals(arg0, result);
+    @Then("^I expect the result to be (-?\\d+|-?\\d+.\\d+)$")
+    public void iExpectTheResultToBe(double arg0) {
+        Assert.assertEquals(arg0, result, 1e-6);
     }
 }
